@@ -6,6 +6,7 @@ export default function Layout() {
         <Stack>
             <Stack.Screen name="index" options={{ title:"Inicio" }} />
             <Stack.Screen name="apod" options={{ title:"Foto del dia" }} />
+            <Stack.Screen name="gallery" options={{ title:"Fotos de Marte" }} />
         </Stack>
     );
 }
