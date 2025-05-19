@@ -1,21 +1,22 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { GetEpicImageUseCase } from '../../domain/usecases/GetEpicImageUseCase';
 import { EpicRepositoryImpl } from '../../data/repositories/EpicRepositoryImpl';
+import { EpicImage } from '../../domain/entities/EpicImage';
 
 export const useEpicViewModel = () => {
-  const [imageData, setImageData] = useState<any>(null);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string>('');
+  const [imageData, setImageData] = useState<EpicImage | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  const getEpicImageUseCase = new GetEpicImageUseCase(new EpicRepositoryImpl());
+  const useCase = new GetEpicImageUseCase(new EpicRepositoryImpl());
 
   const fetchImage = async () => {
     setLoading(true);
     try {
-      const data = await getEpicImageUseCase.execute();
-      setImageData(data); // Guarda los datos de la imagen.
+      const data = await useCase.execute();
+      setImageData(data);
     } catch (err) {
-      setError('Error fetching image');
+      setError('No se pudo obtener la imagen EPIC');
     } finally {
       setLoading(false);
     }

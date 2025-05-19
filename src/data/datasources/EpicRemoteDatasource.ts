@@ -1,16 +1,19 @@
-// src/data/datasources/EpicRemoteDatasource.ts
-export class EpicRemoteDatasource {
-  private readonly baseURL: string = 'https://epic.gsfc.nasa.gov/api/';
+import { fetchEpicData } from '../api/epicApi';
 
-  public async fetchSolarImage(): Promise<any> {
-    try {
-      const response = await fetch(`${this.baseURL}natural/earth/0.jpg?api_key=DEMO_KEY`);
-      if (!response.ok) {
-        throw new Error('Error fetching solar image');
-      }
-      return await response.json();
-    } catch (error) {
-      throw new Error('Error fetching solar image');
-    }
+export class EpicRemoteDatasource {
+  async getEpicImage() {
+    const data = await fetchEpicData();
+    if (data.length === 0) throw new Error('No data');
+
+    const image = data[0]; // Tomamos la primera imagen
+    const dateParts = image.date.split(' ')[0].split('-');
+    const [year, month, day] = dateParts;
+
+    const imageUrl = `https://epic.gsfc.nasa.gov/archive/natural/${year}/${month}/${day}/jpg/${image.image}.jpg`;
+
+    return {
+      url: imageUrl,
+      caption: image.caption,
+    };
   }
 }

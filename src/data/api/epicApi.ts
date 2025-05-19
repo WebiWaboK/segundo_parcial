@@ -1,13 +1,9 @@
 import axios from 'axios';
 
-const proxyUrl = 'https://api.allorigins.win/get?url=';
-const epicApiUrl = 'https://epic.gsfc.nasa.gov/api/natural/earth/0.jpg?api_key=DEMO_KEY';
+const BASE_URL = 'https://api.nasa.gov/EPIC/api/natural';
+const API_KEY = 'DEMO_KEY'; // Reemplaza si tienes tu clave
 
-export const fetchSolarImage = async () => {
-  try {
-    const response = await axios.get(`${proxyUrl}${encodeURIComponent(epicApiUrl)}`);
-    return response.data;
-  } catch (error) {
-    throw new Error('Error fetching solar image from EPIC API');
-  }
+export const fetchEpicData = async () => {
+  const response = await axios.get(`${BASE_URL}?api_key=${API_KEY}`);
+  return response.data;
 };

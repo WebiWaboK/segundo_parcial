@@ -1,4 +1,5 @@
-// src/domain/repositories/EpicRepository.ts
+import { EpicImage } from '../entities/EpicImage';
+
 export interface EpicRepository {
-  getSolarImage(): Promise<any>;
+  getEpicImage(): Promise<EpicImage>;
 }
