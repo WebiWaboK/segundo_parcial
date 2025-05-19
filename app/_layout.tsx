@@ -9,6 +9,7 @@ export default function Layout() {
             <Stack.Screen name="gallery" options={{ title:"Fotos de Marte" }} />
             <Stack.Screen name="epic" options={{ title:"Foto de la Tierra" }} />
             <Stack.Screen name="asteroid" options={{ title:"Asteroides" }} />
+            <Stack.Screen name="donki" options={{ title:"Alertas Espaciales" }} />
         </Stack>
     );
 }

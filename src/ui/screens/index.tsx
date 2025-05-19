@@ -33,6 +33,12 @@ export default function HomeScreen() {
         </Pressable>
       </Link>
 
+      <Link href="/donki" asChild>
+        <Pressable style={styles.button}>
+          <Text style={styles.buttonText}>🚨 Alertas Espaciales</Text>
+        </Pressable>
+      </Link>
+
       <Link href="/settings" asChild>
         <Pressable style={styles.button}>
           <Text style={styles.buttonText}>⚙️ Configuración</Text>
