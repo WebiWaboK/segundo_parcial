@@ -27,6 +27,12 @@ export default function HomeScreen() {
         </Pressable>
       </Link>
 
+      <Link href="/asteroid" asChild>
+        <Pressable style={styles.button}>
+          <Text style={styles.buttonText}>Fotos de asteroides</Text>
+        </Pressable>
+      </Link>
+
       <Link href="/settings" asChild>
         <Pressable style={styles.button}>
           <Text style={styles.buttonText}>⚙️ Configuración</Text>
