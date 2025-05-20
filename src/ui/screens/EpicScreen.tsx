@@ -1,12 +1,21 @@
 import React from 'react';
-import { ActivityIndicator, ScrollView, StyleSheet, Text } from 'react-native';
+import { ScrollView, Text, StyleSheet, View } from 'react-native';
 import { useEpicViewModel } from '../../presentation/viewmodels/useEpicViewModel';
 import SolarImageCard from '../components/SolarImageCard';
+import RotatingPlanet from '../components/RotatingPlanet';
 
 const EpicScreen = () => {
   const { imageData, loading, error } = useEpicViewModel();
 
-  if (loading) return <ActivityIndicator size="large" color="#0000ff" />;
+  if (loading) {
+    return (
+      <View style={styles.centered}>
+        <RotatingPlanet />
+        <Text style={styles.loadingText}>Cargando imágenes solares...</Text>
+      </View>
+    );
+  }
+
   if (error) return <Text>{error}</Text>;
 
   return (
@@ -21,6 +30,16 @@ const EpicScreen = () => {
 const styles = StyleSheet.create({
   container: {
     padding: 16,
+  },
+  centered: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#0f172a',
+  },
+  loadingText: {
+    color: '#fff',
+    marginTop: 16,
   },
 });
 

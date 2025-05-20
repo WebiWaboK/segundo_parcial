@@ -29,7 +29,7 @@ export default function HomeScreen() {
 
       <Link href="/asteroid" asChild>
         <Pressable style={styles.button}>
-          <Text style={styles.buttonText}>Fotos de asteroides</Text>
+          <Text style={styles.buttonText}>📡 Asteroides que estan en la tierra</Text>
         </Pressable>
       </Link>
 

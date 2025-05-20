@@ -1,18 +1,22 @@
 import React from 'react';
-import { ScrollView, Text, ActivityIndicator, StyleSheet } from 'react-native';
+import { ScrollView, Text, StyleSheet, View } from 'react-native';
 import { useAsteroidsViewModel } from '../../presentation/viewmodels/useAsteroidsViewModel';
 import AsteroidCard from '../components/AsteroidCard';
+import RotatingPlanet from '../components/RotatingPlanet';
 
 const AsteroidsScreen = () => {
   const { asteroids, loading, error } = useAsteroidsViewModel();
 
   if (loading) {
-    return <ActivityIndicator size="large" color="#0000ff" />;
+    return (
+      <View style={styles.centered}>
+        <RotatingPlanet />
+        <Text style={styles.loadingText}>Cargando asteroides...</Text>
+      </View>
+    );
   }
 
-  if (error) {
-    return <Text>{error}</Text>;
-  }
+  if (error) return <Text>{error}</Text>;
 
   return (
     <ScrollView style={styles.container}>
@@ -26,6 +30,16 @@ const AsteroidsScreen = () => {
 const styles = StyleSheet.create({
   container: {
     padding: 16,
+  },
+  centered: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#0f172a',
+  },
+  loadingText: {
+    color: '#fff',
+    marginTop: 16,
   },
 });
 
