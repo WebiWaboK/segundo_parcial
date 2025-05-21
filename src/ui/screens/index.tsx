@@ -1,7 +1,11 @@
 import { View, Text, Pressable, StyleSheet, ScrollView } from 'react-native';
 import { Link } from 'expo-router';
+import { useTheme } from '../../state/context/ThemeContext';
 
 export default function HomeScreen() {
+  const { theme } = useTheme();
+  const styles = themedStyles(theme);
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>🚀 NASA Explorer</Text>
@@ -29,7 +33,7 @@ export default function HomeScreen() {
 
       <Link href="/asteroid" asChild>
         <Pressable style={styles.button}>
-          <Text style={styles.buttonText}>📡 Asteroides que estan en la tierra</Text>
+          <Text style={styles.buttonText}>📡 Asteroides que están en la Tierra</Text>
         </Pressable>
       </Link>
 
@@ -48,40 +52,41 @@ export default function HomeScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    paddingTop: 60,
-    paddingBottom: 30,
-    paddingHorizontal: 20,
-    backgroundColor: '#000',
-    flexGrow: 1,
-    alignItems: 'center',
-  },
-  title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#ffffff',
-    marginBottom: 10,
-  },
-  subtitle: {
-    fontSize: 16,
-    color: '#aaa',
-    marginBottom: 30,
-    textAlign: 'center',
-  },
-  button: {
-    backgroundColor: '#1e1e1e',
-    paddingVertical: 15,
-    paddingHorizontal: 20,
-    borderRadius: 10,
-    marginVertical: 10,
-    width: '100%',
-    borderColor: '#fff',
-    borderWidth: 1,
-  },
-  buttonText: {
-    color: '#ffffff',
-    fontSize: 16,
-    textAlign: 'center',
-  },
-});
+const themedStyles = (theme: string) =>
+  StyleSheet.create({
+    container: {
+      paddingTop: 60,
+      paddingBottom: 30,
+      paddingHorizontal: 20,
+      backgroundColor: theme === 'dark' ? '#000' : '#fff',
+      flexGrow: 1,
+      alignItems: 'center',
+    },
+    title: {
+      fontSize: 32,
+      fontWeight: 'bold',
+      color: theme === 'dark' ? '#fff' : '#000',
+      marginBottom: 10,
+    },
+    subtitle: {
+      fontSize: 16,
+      color: theme === 'dark' ? '#aaa' : '#444',
+      marginBottom: 30,
+      textAlign: 'center',
+    },
+    button: {
+      backgroundColor: theme === 'dark' ? '#1e1e1e' : '#ddd',
+      paddingVertical: 15,
+      paddingHorizontal: 20,
+      borderRadius: 10,
+      marginVertical: 10,
+      width: '100%',
+      borderColor: theme === 'dark' ? '#fff' : '#000',
+      borderWidth: 1,
+    },
+    buttonText: {
+      color: theme === 'dark' ? '#fff' : '#000',
+      fontSize: 16,
+      textAlign: 'center',
+    },
+  });
