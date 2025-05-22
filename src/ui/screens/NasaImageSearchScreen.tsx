@@ -39,7 +39,14 @@ const NasaImageSearchScreen = () => {
         )}
       </Formik>
 
-      {loading && <ActivityIndicator size="large" color={isDark ? '#1e90ff' : '#0000ff'} style={{ marginTop: 10 }} />}
+      {loading && (
+        <ActivityIndicator
+          size="large"
+          color={isDark ? '#1e90ff' : '#0000ff'}
+          style={{ marginTop: 10 }}
+        />
+      )}
+
       {error !== '' && <Text style={[styles.error, { color: 'red' }]}>{error}</Text>}
 
       {images.map((img, idx) => (
