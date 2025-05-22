@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Text, View, StyleSheet } from 'react-native';
+import { Image, Text, View, StyleSheet, Platform } from 'react-native';
 import { useTheme } from '../../state/context/ThemeContext';
 
 interface Props {
@@ -10,10 +10,20 @@ interface Props {
 const SolarImageCard = ({ imageUrl, caption }: Props) => {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
+  const isWeb = Platform.OS === 'web';
 
   return (
-    <View style={[styles.card, { backgroundColor: isDark ? '#1e293b' : '#fff' }]}>
-      <Image source={{ uri: imageUrl }} style={styles.image} resizeMode="cover" />
+    <View
+      style={[
+        styles.card,
+        {
+          backgroundColor: isDark ? '#1e293b' : '#fff',
+          height: isWeb ? 700 : 'auto',
+          width: isWeb ? 600 : '100%',
+        },
+      ]}
+    >
+      <Image source={{ uri: imageUrl }} style={[styles.image, { height: isWeb ? 650 : 500 }]} resizeMode="cover" />
       <Text style={[styles.caption, { color: isDark ? '#fff' : '#000' }]}>{caption}</Text>
     </View>
   );
