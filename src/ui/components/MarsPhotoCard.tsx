@@ -34,10 +34,14 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     overflow: 'hidden',
     elevation: 2,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   image: {
-    width: '100%',
+    width: '35%',
     aspectRatio: 1,
+    margin: 10,
+    borderRadius: 8,
   },
   text: {
     paddingHorizontal: 8,
