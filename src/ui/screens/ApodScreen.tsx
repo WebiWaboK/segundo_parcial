@@ -6,7 +6,7 @@ import { useTheme } from '../../state/context/ThemeContext';
 
 export default function ApodScreen() {
   const { apod, loading, error } = useApodViewModel();
-  const { theme } = useTheme();
+  const { theme, textColor } = useTheme();
 
   const isDark = theme === 'dark';
 
@@ -14,13 +14,24 @@ export default function ApodScreen() {
     return (
       <View style={[styles.centered, { backgroundColor: isDark ? '#0f172a' : '#f0f0f0' }]}>
         <RotatingPlanet />
-        <Text style={{ color: isDark ? '#fff' : '#000', marginTop: 16 }}>Cargando contenido astronómico...</Text>
+        <Text style={{ color: textColor, marginTop: 16 }}>Cargando contenido astronómico...</Text>
       </View>
     );
   }
 
-  if (error) return <Text>{error}</Text>;
-  if (!apod) return <Text>No hay datos</Text>;
+  if (error)
+    return (
+      <View style={[styles.centered, { backgroundColor: isDark ? '#0f172a' : '#f0f0f0' }]}>
+        <Text style={{ color: textColor }}>{error}</Text>
+      </View>
+    );
+
+  if (!apod)
+    return (
+      <View style={[styles.centered, { backgroundColor: isDark ? '#0f172a' : '#f0f0f0' }]}>
+        <Text style={{ color: textColor }}>No hay datos</Text>
+      </View>
+    );
 
   return (
     <View style={{ flex: 1, padding: 16, backgroundColor: isDark ? '#0f172a' : '#f0f0f0' }}>

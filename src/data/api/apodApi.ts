@@ -6,3 +6,5 @@ export const apodApi = axios.create({
     api_key: 'DEMO_KEY',
   },
 });
+
+//Aqui usamos singleton para que no se creen instancias de la api

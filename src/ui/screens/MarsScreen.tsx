@@ -7,19 +7,25 @@ import { useTheme } from '../../state/context/ThemeContext';
 
 const MarsScreen = () => {
   const { photos, loading, error } = useMarsViewModel('2020-07-13');
-  const { theme } = useTheme();
+  const { theme, textColor } = useTheme();
   const isDark = theme === 'dark';
 
   if (loading) {
     return (
       <View style={[styles.loaderContainer, { backgroundColor: isDark ? '#0f172a' : '#f0f0f0' }]}>
         <RotatingPlanet />
-        <Text style={{ color: isDark ? '#fff' : '#000', marginTop: 16, fontSize: 16 }}>Cargando fotos de Marte...</Text>
+        <Text style={{ color: textColor, marginTop: 16, fontSize: 16 }}>Cargando fotos de Marte...</Text>
       </View>
     );
   }
 
-  if (error) return <Text>{error}</Text>;
+  if (error) {
+    return (
+      <View style={[styles.loaderContainer, { backgroundColor: isDark ? '#0f172a' : '#f0f0f0' }]}>
+        <Text style={{ color: textColor }}>{error}</Text>
+      </View>
+    );
+  }
 
   return (
     <ScrollView style={{ backgroundColor: isDark ? '#0f172a' : '#f0f0f0' }}>

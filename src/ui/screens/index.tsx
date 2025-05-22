@@ -43,6 +43,12 @@ export default function HomeScreen() {
         </Pressable>
       </Link>
 
+      <Link href="/searchImage" asChild>
+        <Pressable style={styles.button}>
+          <Text style={styles.buttonText}>🔍 Busqueda de imagenes</Text>
+        </Pressable>
+      </Link>
+
       <Link href="/settings" asChild>
         <Pressable style={styles.button}>
           <Text style={styles.buttonText}>⚙️ Configuración</Text>

@@ -13,6 +13,7 @@ export default function Layout() {
                 <Stack.Screen name="asteroid" options={{ title:"Asteroides" }} />
                 <Stack.Screen name="donki" options={{ title:"Alertas Espaciales" }} />
                 <Stack.Screen name="settings" options={{ title:"Configuración" }} />
+                <Stack.Screen name="searchImage" options={{ title:"Buscar Imagen" }} />
             </Stack>
         </ThemeProvider>
     );

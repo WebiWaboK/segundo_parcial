@@ -17,3 +17,5 @@ export class ApodModel implements Apod {
     return new ApodModel(json);
   }
 }
+
+// Aqui estamos usando el patron de diseño Factory para crear instancias de ApodModel

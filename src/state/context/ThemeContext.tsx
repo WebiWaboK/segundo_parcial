@@ -6,6 +6,7 @@ type Theme = 'light' | 'dark';
 interface ThemeContextProps {
   theme: Theme;
   toggleTheme: () => void;
+  textColor: string; // color para texto según el tema
 }
 
 const ThemeContext = createContext<ThemeContextProps | undefined>(undefined);
@@ -22,8 +23,11 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
   };
 
+  // Definir color de texto según tema
+  const textColor = theme === 'dark' ? '#FFFFFF' : '#000000';
+
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme, textColor }}>
       {children}
     </ThemeContext.Provider>
   );
